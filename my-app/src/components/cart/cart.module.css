@@ -5,16 +5,17 @@
   }
 
   .cart{
-    
     grid-template-columns: repeat(3, 1fr);
   }
- 
-  @media screen and (min-width: 900px){
+  
+  @media (min-width: 900px) {
     .cart{
-      display: grid;
+     display: grid;
     }
   }
+
   
+
   .cart_section h1{
     text-align: center;
   }
@@ -44,7 +45,7 @@
     border-radius: 10px;
     padding: 10px;
     justify-self: end;
-    width: 250px;
+    width: 270px;
   }
   
   .search_block:hover{

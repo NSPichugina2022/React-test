@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import React from "react";
 import style from "./form.module.css"
+import axios from "axios";
 
 
 export default function Form(){
@@ -8,7 +9,7 @@ export default function Form(){
     const { register, handleSubmit, formState:{errors} } = useForm();
     const onSubmit = (data) => {
         axios.post(`https://638c8265eafd555746a7d670.mockapi.io/form`, data)
-            alert("Заявка отправлена")
+        alert("Заявка отправлена")
     }
 
     return(
@@ -21,8 +22,8 @@ export default function Form(){
                      {...register("lastName", {
                             required: true,
                             maxLength: 50,
-                            pattern: /^[А-Яа-я]+$/i 
-                     })}
+                            pattern: /^[А-Яа-я]+$/i  
+                        })}
                      type="text"
                      className="form-control"
                      placeholder="Фамилия"
@@ -35,9 +36,8 @@ export default function Form(){
                     <p>Фамилия не может содержать более 50 символов</p>
                 )}
                 {errors?.lastName?.type === "pattern" &&(
-                    <p>Поле заполнено некорректно</p>
+                    <p>Поле заполненно некорректно</p>
                 )}
-
                 <div className="input-group mb-3"> 
                      <input
                      {...register("firstName", {
@@ -57,16 +57,15 @@ export default function Form(){
                     <p>Имя не может содержать более 50 символов</p>
                 )}
                 {errors?.firstName?.type === "pattern" &&(
-                    <p>Поле заполнено некорректно</p>
+                    <p>Поле заполненно некорректно</p>
                 )}
-
-
+                
                 <div className="input-group mb-3"> 
-                <input
+                     <input
                      {...register("email", {
                             required: true,
                             maxLength: 50,
-                            pattern: /^[A-Za-z@._-]+$/i 
+                            pattern: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/i 
                      })}
                      type="text"
                      className="form-control"
@@ -80,16 +79,13 @@ export default function Form(){
                     <p>Email не может содержать более 50 символов</p>
                 )}
                 {errors?.email?.type === "pattern" &&(
-                    <p>Поле заполнено некорректно</p>
+                    <p>Поле заполненно некорректно</p>
                 )}
-                
             </div>
             <div>
                 <input className="btn btn-outline-primary" type="submit"/>
             </div>
             </form>
-
-
         </div>
     )
 }
